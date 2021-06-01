@@ -1,0 +1,12 @@
+.customers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.customer {
+    flex-basis: 20%;
+    margin: 1em;
+    padding: 1em;
+    border: 1px solid red;
+}
