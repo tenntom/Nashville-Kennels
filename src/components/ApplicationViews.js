@@ -9,6 +9,7 @@ import { CustomerProvider } from "./customers/CustomerProvider"
 import { CustomerList } from "./customers/CustomerList"
 import { EmployeeProvider } from "./employees/EmployeeProvider"
 import { EmployeeList } from "./employees/EmployeeList"
+import { EmployeeForm } from "./employees/EmployeeForm"
 
 export const ApplicationViews = () => {
     return (
@@ -41,11 +42,17 @@ export const ApplicationViews = () => {
                 </Route>
             </CustomerProvider>
 
-            <EmployeeProvider>
-                <Route exact path="/employees">
-                    <EmployeeList />
-                </Route>
-            </EmployeeProvider>
+            <LocationProvider>
+                <EmployeeProvider>
+                    <Route exact path="/employees">
+                        <EmployeeList />
+                    </Route>
+
+                    <Route exact path="/employees/create">
+                        <EmployeeForm />
+                    </Route>
+                </EmployeeProvider>
+            </LocationProvider>
 
         </>
     )
