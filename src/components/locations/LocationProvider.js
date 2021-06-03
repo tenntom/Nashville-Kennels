@@ -12,14 +12,14 @@ export const LocationProvider = (props) => {
     }
 
     const addLocation = locationObj => {
-        return fetch("http://localhost/locations", {
+        return fetch("http://localhost:8088/locations", {
             method: "POST",
             headers: {
                 "Context-Type": "application/json"
             },
             body: JSON.stringify(locationObj)
         })
-        .then(getLocations)
+        .then(response => response.json)
     }
 
     return (

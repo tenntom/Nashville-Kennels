@@ -2,6 +2,7 @@ import React from "react"
 import { Route } from "react-router-dom"
 import { LocationProvider } from "./locations/LocationProvider"
 import { LocationList } from "./locations/LocationList"
+import { LocationForm } from "./locations/LocationForm"
 import { AnimalProvider } from "./animal/AnimalProvider"
 import { AnimalList } from "./animal/AnimalList"
 import { AnimalForm } from "./animal/AnimalForm"
@@ -11,6 +12,7 @@ import { EmployeeProvider } from "./employees/EmployeeProvider"
 import { EmployeeList } from "./employees/EmployeeList"
 import { EmployeeForm } from "./employees/EmployeeForm"
 
+
 export const ApplicationViews = () => {
     return (
         <>
@@ -18,6 +20,9 @@ export const ApplicationViews = () => {
             <LocationProvider>
                 <Route exact path="/locations">
                     <LocationList />
+                </Route>
+                <Route exact path="/locations/create">
+                    <LocationForm />
                 </Route>
             </LocationProvider>
 

@@ -45,24 +45,3 @@ export const AnimalList = () => {
 }
 
 
-  // return (
-  //   <section className="animals">
-  //     {console.log("AnimalList: Render", animals)}
-  //     {
-  //       animals.map(animal => {
-  //         return (
-  //           <div className="animal" id={`animal--${animal.id}`} key={animal.id}>
-  //             <div className="animal__name">
-  //               Name: { animal.name }
-  //             </div>
-  //             <div className="animal__breed">
-  //               Breed: { animal.breed }
-  //             </div>
-  //           </div>
-  //         )
-  //       })
-  //     }
-  //   </section>
-  // )
-
-

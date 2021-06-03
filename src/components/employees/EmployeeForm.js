@@ -62,7 +62,7 @@ export const EmployeeForm = () => {
         position: Employee.position
       }
       addEmployee(newEmployee)
-        .then(() => history.push("/Employees"))
+        .then(() => history.push("/employees"))
     }
   }
 
