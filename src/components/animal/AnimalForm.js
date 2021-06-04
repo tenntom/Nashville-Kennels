@@ -3,7 +3,7 @@ import { LocationContext } from "../locations/LocationProvider"
 import { AnimalContext } from "../animal/AnimalProvider"
 import { CustomerContext } from "../customers/CustomerProvider"
 import "./Animal.css"
-import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom'
 
 export const AnimalForm = () => {
   const { addAnimal } = useContext(AnimalContext)

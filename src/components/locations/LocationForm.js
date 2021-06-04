@@ -13,9 +13,9 @@ export const LocationForm = () => {
 
     const history = useHistory();
 
-    useEffect(() => {
-        getLocations()
-    },[])
+    // useEffect(() => {
+    //     getLocations()
+    // },[location])
 
     const handleControlledInputChange = (event) => {
         const newLocation = { ...location }
@@ -35,7 +35,7 @@ export const LocationForm = () => {
             }
 
             addLocation(newLocation)
-            .then(() => history.push("/locations"))
+                .then(() => history.push("/locations"))
         }
     }
 
