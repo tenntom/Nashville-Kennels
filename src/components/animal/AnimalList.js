@@ -36,7 +36,7 @@ export const AnimalList = () => {
         Add Pet
         </button>
 
-      <button onClick={() => history.push("/animal/create")} classname="animal__button">
+      <button onClick={() => history.push("/animals/create")} className="animal__button">
         Make Reservation
             </button>
 

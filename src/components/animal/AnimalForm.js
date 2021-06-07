@@ -10,17 +10,20 @@ export const AnimalForm = () => {
   const { locations, getLocations } = useContext(LocationContext)
   const { customers, getCustomers } = useContext(CustomerContext)
 
-  const [animal, setAnimal] = useState({})
+  const [animal, setAnimal] = useState(
+    {
+      name: "",
+      breed: "",
+      locationId: "",
+      customerId: ""
+    }
+    )
 
   const [IsLoading, setIsLoading] = useState(true);
 
   const { animalId } = useParams();
 
   const history = useHistory();
-
-  // useEffect(() => {
-  //   getCustomers().then(getLocations)
-  // }, [])
 
 
   const handleControlledInputChange = (event) => {
@@ -34,11 +37,9 @@ export const AnimalForm = () => {
 
   const handleSaveAnimal = (event) => {
     event.preventDefault() //Prevents the browser from submitting the form
-
-    const locationId = parseInt(animal.locationId)
-    const customerId = parseInt(animal.customerId)
-
-    if (locationId === 0 || customerId === 0) {
+    // const locationId = parseInt(animal.locationId)
+    // const customerId = parseInt(animal.customerId)
+    if (parseInt(animal.locationId) === 0 || parseInt(animal.customerId) === 0) {
       window.alert("Please select a location and a customer")
     } else {
 
@@ -66,7 +67,9 @@ export const AnimalForm = () => {
   }
 
   useEffect(() => {
-    getCustomers().then(getLocations).then(() => {
+    getCustomers()
+    .then(getLocations)
+    .then(() => {
       if (animalId) {
         getAnimalById(animalId)
           .then(animal => {
@@ -79,21 +82,6 @@ export const AnimalForm = () => {
     })
   }, [])
   
-
-
-  //Invoke addAnimal passing the new animal object as an argument
-  //Once complete, change the url and display the animal list
-
-  //   const newAnimal = {
-  //     name: animal.name,
-  //     breed: animal.breed,
-  //     locationId: locationId,
-  //     customerId: customerId
-  //   }
-  //   addAnimal(newAnimal)
-  //     .then(() => history.push("/animals"))
-  // }
-  //   }
 
   return (
     <form className="animalForm">
@@ -114,7 +102,7 @@ export const AnimalForm = () => {
       <fieldset>
         <div className="form-group">
           <label htmlFor="location">Assign to location: </label>
-          <select name="locationId" id="animalLocation" className="form-control" value={animal.locationId} onChange={handleControlledInputChange}>
+          <select name="location" id="locationId" className="form-control" value={animal.locationId} onChange={handleControlledInputChange}>
             <option value="0">Select a location</option>
             {locations.map(l => (
               <option key={l.id} value={l.id}>
@@ -140,7 +128,7 @@ export const AnimalForm = () => {
       <button className="btn btn-primary"
         disabled={IsLoading}
         onClick={event => {
-          handleSaveAnimal()
+          handleSaveAnimal(event)
         }}>
         {animalId ? <>Save Animal</> : <>Add Animal</>} </button>
     </form>

@@ -1,12 +1,11 @@
 import React, { useContext, useEffect, useState } from "react"
 import { AnimalContext } from "./AnimalProvider"
 import "./Animal.css"
-import { useParams, useHistory } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 
 export const AnimalDetail = (props) => {
   const { getAnimalById, releaseAnimal } = useContext(AnimalContext)
   const [animal, setAnimal] = useState({
-    // id:"",
     name:"",
     breed:"",
     location: {},
