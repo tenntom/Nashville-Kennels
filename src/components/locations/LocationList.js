@@ -22,7 +22,7 @@ export const LocationList = () => {
         </button>
             <div className="locations">
                 {
-                    locations.map(location => <Link to={`/locations/details/${location.id}`} className="location" key={location.id}>
+                    locations.map(location => <Link to={`/locations/detail/${location.id}`} className="location" key={location.id}>
                         <h3>{location.name}</h3>
                     </Link>
                     )

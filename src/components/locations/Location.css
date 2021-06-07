@@ -10,3 +10,15 @@
     padding: 1em;
     border: 1px solid goldenrod;
 }
+
+.location__animals{
+    border: 1px solid crimson;
+    padding: 1em;
+    margin: 1em
+}
+
+.location__employees{
+    border: 1px solid crimson;
+    padding: 1em;
+    margin: 1em
+}

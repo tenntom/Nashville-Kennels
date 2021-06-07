@@ -13,9 +13,9 @@ export const LocationForm = () => {
 
     const history = useHistory();
 
-    // useEffect(() => {
-    //     getLocations()
-    // },[location])
+    useEffect(() => {
+        getLocations()
+    },[])
 
     const handleControlledInputChange = (event) => {
         const newLocation = { ...location }

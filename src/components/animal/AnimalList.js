@@ -40,23 +40,17 @@ export const AnimalList = () => {
         Make Reservation
             </button>
 
+
       <div className="animals">
+        <h1>Pets</h1>
         {
-          filteredAnimals.map((animal) => {
-            return <AnimalDetail key={animal.id} animal={animal.id} />
-          })
+          filteredAnimals.map (
+            animal => {
+             return(<AnimalDetail animal={animal} key={animal.id}/>)
+            }
+          )
         }
       </div>
     </>
   )
-}
-
-{/* {
-          animals.map(animal => <Link to={`/animals/detail/${animal.id}`}
-            className="animal"
-            key={animal.id}>
-            {animal.name}
-          </Link>
-          )
-        }  */
 }
