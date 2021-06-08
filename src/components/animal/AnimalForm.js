@@ -53,7 +53,7 @@ export const AnimalForm = () => {
           locationId: parseInt(animal.locationId),
           customerId: parseInt(animal.customerId)
         })
-          .then(() => history.push(`/animals/detail/${animal.id}`))
+          .then(() => history.push(`/animals`))
       } else {
         //If new
         addAnimal({

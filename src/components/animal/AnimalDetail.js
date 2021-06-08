@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom"
 export const AnimalDetail = (props) => {
   const { getAnimalById, releaseAnimal } = useContext(AnimalContext)
   const [animal, setAnimal] = useState({
+    id: "",
     name:"",
     breed:"",
     location: {},
@@ -26,8 +27,6 @@ export const AnimalDetail = (props) => {
   },
     []
   )
-
-
 
   const handleRelease = () => {
     releaseAnimal(animal.id)
