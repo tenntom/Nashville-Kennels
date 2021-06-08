@@ -8,12 +8,6 @@ export const EmployeeForm = () => {
   const { addEmployee } = useContext(EmployeeContext)
   const { locations, getLocations } = useContext(LocationContext)
 
-  /*
-  With React, we do not target the DOM with `document.querySelector()`. Instead, our return (render) reacts to state or props.
-
-  Define the intial state of the form inputs with useState()
-  */
-
   const [Employee, setEmployee] = useState({
     name: "",
     position:"",
@@ -22,25 +16,17 @@ export const EmployeeForm = () => {
 
   const history = useHistory();
 
-  /*
-  Reach out to the world and get customers state
-  and locations state on initialization.
-  */
   useEffect(() => {
     getLocations()
   }, [])
 
-  //when a field changes, update state. The return will re-render and display based on the values in state
-  //Controlled component
+
   const handleControlledInputChange = (event) => {
-    /* When changing a state object or array,
-    always create a copy, make changes, and then set state.*/
+ 
     const newEmployee = { ...Employee }
-    /* Employee is an object with properties.
-    Set the property to the new value
-    using object bracket notation. */
+ 
     newEmployee[event.target.id] = event.target.value
-    // update state
+
     setEmployee(newEmployee)
   }
 
@@ -52,8 +38,6 @@ export const EmployeeForm = () => {
     if (locationId === 0 || Employee.position === null) {
       window.alert("Please select a position and location.")
     } else {
-      //Invoke addEmployee passing the new Employee object as an argument
-      //Once complete, change the url and display the Employee list
 
       const newEmployee = {
         name: Employee.name,

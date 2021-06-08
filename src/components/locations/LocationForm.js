@@ -1,23 +1,21 @@
-import React, {useContext, useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { LocationContext } from "../locations/LocationProvider"
-import { useHistory } from "react-router-dom"
+import { useHistory, useParams } from "react-router-dom"
 import "./Location.css"
 
 export const LocationForm = () => {
-    const {addLocation, getLocations } = useContext(LocationContext)
-    
+    const { addLocation } = useContext(LocationContext)
+
     const [location, setLocation] = useState({
         name: "",
         address: "",
     });
 
+
     const history = useHistory();
 
-    useEffect(() => {
-        getLocations()
-    },[])
-
     const handleControlledInputChange = (event) => {
+        event.preventDefault()
         const newLocation = { ...location }
         newLocation[event.target.id] = event.target.value
         setLocation(newLocation)
@@ -26,8 +24,8 @@ export const LocationForm = () => {
     const handleClickSaveLocation = (event) => {
         event.preventDefault()
 
-        if (location.name === null) {
-            window.alert("Please enter a location name.")
+        if (location.name === "" || location.address === "") {
+            window.alert("Please enter a location name and address.")
         } else {
             const newLocation = {
                 name: location.name,
@@ -35,7 +33,7 @@ export const LocationForm = () => {
             }
 
             addLocation(newLocation)
-            .then(() => history.push("/locations"))
+                .then(() => history.push(`/locations/`))
         }
     }
 
@@ -54,12 +52,12 @@ export const LocationForm = () => {
                     <input type="text" id="address" className="form-control" placeholder="Location address" value={location.address} onChange={handleControlledInputChange} />
                 </div>
             </fieldset>
-            <button className="btn btn-primary" onClick={handleClickSaveLocation}>Save Location
+            <button className="btn btn-primary"
+                onClick={event => {
+                    handleClickSaveLocation(event)
+                }}>
+                Save Location
             </button>
         </form>
     )
 }
-
-
-
-

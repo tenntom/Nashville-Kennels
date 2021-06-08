@@ -6,7 +6,7 @@ export const LocationProvider = (props) => {
     const [locations, setLocations] = useState([])
 
     const getLocations = () => {
-        return fetch("http://localhost:8088/locations")
+        return fetch("http://localhost:8088/locations?_embed=employees&_embed=animals")
         .then(res=> res.json())
         .then(setLocations)
     }
@@ -15,11 +15,11 @@ export const LocationProvider = (props) => {
         return fetch("http://localhost:8088/locations", {
             method: "POST",
             headers: {
-                "Context-Type": "application/json"
+                "Content-Type": "application/json"
             },
             body: JSON.stringify(locationObj)
         })
-        .then(response => response.json)
+        .then(getLocations)
     }
 
     return (

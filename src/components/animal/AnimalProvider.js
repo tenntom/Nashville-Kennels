@@ -7,10 +7,13 @@ export const AnimalContext = createContext()
 export const AnimalProvider = (props) => {
     const [animals, setAnimals] = useState([])
 
+    const [searchTerms, setSearchTerms] = useState("")
+
     const getAnimals = () => {
-        return fetch("http://localhost:8088/animals?_expand=customer&_expand=location&_sort=location.id")
-        .then(res => res.json())
-        .then(setAnimals)
+        return fetch("http://localhost:8088/animals")
+            // "http://localhost:8088/animals?_expand=customer&_expand=location&_sort=location.id")
+            .then(res => res.json())
+            .then(setAnimals)
     }
 
     const addAnimal = animalObj => {
@@ -20,8 +23,31 @@ export const AnimalProvider = (props) => {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(animalObj)
+        }).then(response => response.json) 
+        .then(getAnimals)
+    }
+
+    const releaseAnimal = animalId => {
+        return fetch(`http://localhost:8088/animals/${animalId}`, {
+            method: "DELETE"
         })
-        .then(response => response.json)
+            .then(getAnimals)
+    }
+
+    const updateAnimal = animal => {
+        return fetch(`http://localhost:8088/animals/${animal.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(animal)
+        })
+            .then(getAnimals)
+    }
+
+    const getAnimalById = (animalId) => {
+        return fetch(`http://localhost:8088/animals/${animalId}?_expand=location&_expand=customer`)
+        .then(res => res.json())
     }
 
     /*
@@ -32,7 +58,7 @@ export const AnimalProvider = (props) => {
     */
     return (
         <AnimalContext.Provider value={{
-            animals, getAnimals, addAnimal
+            animals, getAnimals, addAnimal, releaseAnimal, updateAnimal, getAnimalById, searchTerms, setSearchTerms
         }}>
             {props.children}
         </AnimalContext.Provider>

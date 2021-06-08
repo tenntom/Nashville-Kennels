@@ -1,17 +1,16 @@
 import React, { useContext, useEffect } from "react"
 import { EmployeeContext } from "./EmployeeProvider"
-import { useHistory } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import "./Employee.css"
 
 export const EmployeeList = () => {
     const { employees, getEmployees } = useContext(EmployeeContext)
 
-    useEffect(() => {
-        console.log("EmployeeList: useEffect - getEmployees")
-        getEmployees()
-    }, [])
-
     const history = useHistory()
+
+    useEffect(() => {
+        getEmployees()
+    },[])
 
     return (
         <>
@@ -21,6 +20,21 @@ export const EmployeeList = () => {
         }>
             Add Employee
         </button>
+        <div className="employees">
+            {
+                employees.map(employee => <Link to={`/employees/detail/${employee.id}`} className="employee"
+                key = {employee.id}>
+                    <h3>{employee.name}</h3>
+                </Link>
+                )
+                }
+        </div>
+        
+{/*         
+        
+        
+        
+        
         <section className="employees">
             {console.log("EmployeeList: Render", employees)}
             {
@@ -40,7 +54,7 @@ export const EmployeeList = () => {
                     )
                 })
             }
-        </section>
+        </section> */}
         </>
     )
 }
