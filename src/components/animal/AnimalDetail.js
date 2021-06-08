@@ -15,8 +15,6 @@ export const AnimalDetail = (props) => {
 
   const animalId = props.animal.id
 
-  // setAnimal(props.animal) -- This doesn't work, but I don't know why.
-
   const history = useHistory()
 
   useEffect(() => {

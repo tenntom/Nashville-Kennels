@@ -19,21 +19,20 @@ export const LocationForm = () => {
         const newLocation = { ...location }
         newLocation[event.target.id] = event.target.value
         setLocation(newLocation)
-        console.log(location)
     }
 
     const handleClickSaveLocation = (event) => {
         event.preventDefault()
 
-        if (location.name === null) {
-            window.alert("Please enter a location name.")
+        if (location.name === "" || location.address === "") {
+            window.alert("Please enter a location name and address.")
         } else {
             const newLocation = {
                 name: location.name,
                 address: location.address
             }
 
-            addLocation(location)
+            addLocation(newLocation)
                 .then(() => history.push(`/locations/`))
         }
     }

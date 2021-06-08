@@ -37,8 +37,6 @@ export const AnimalForm = () => {
 
   const handleSaveAnimal = (event) => {
     event.preventDefault() //Prevents the browser from submitting the form
-    // const locationId = parseInt(animal.locationId)
-    // const customerId = parseInt(animal.customerId)
     if (parseInt(animal.locationId) === 0 || parseInt(animal.customerId) === 0) {
       window.alert("Please select a location and a customer")
     } else {
