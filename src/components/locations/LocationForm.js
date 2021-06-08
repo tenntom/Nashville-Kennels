@@ -1,11 +1,11 @@
-import React, {useContext, useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { LocationContext } from "../locations/LocationProvider"
 import { useHistory, useParams } from "react-router-dom"
 import "./Location.css"
 
 export const LocationForm = () => {
-    const {addLocation, getLocations } = useContext(LocationContext)
-    
+    const { addLocation } = useContext(LocationContext)
+
     const [location, setLocation] = useState({
         name: "",
         address: "",
@@ -14,15 +14,12 @@ export const LocationForm = () => {
 
     const history = useHistory();
 
-    // useEffect(() => {
-    //     getLocations()
-    // },[])
-
     const handleControlledInputChange = (event) => {
         event.preventDefault()
         const newLocation = { ...location }
         newLocation[event.target.id] = event.target.value
         setLocation(newLocation)
+        console.log(location)
     }
 
     const handleClickSaveLocation = (event) => {
@@ -36,8 +33,8 @@ export const LocationForm = () => {
                 address: location.address
             }
 
-            addLocation(newLocation)
-                .then(() => history.push("/locations"))
+            addLocation(location)
+                .then(() => history.push(`/locations/`))
         }
     }
 
@@ -56,16 +53,12 @@ export const LocationForm = () => {
                     <input type="text" id="address" className="form-control" placeholder="Location address" value={location.address} onChange={handleControlledInputChange} />
                 </div>
             </fieldset>
-            <button className="btn btn-primary" 
-            onClick={event => {
-                handleClickSaveLocation(event)
+            <button className="btn btn-primary"
+                onClick={event => {
+                    handleClickSaveLocation(event)
                 }}>
                 Save Location
             </button>
         </form>
     )
 }
-
-
-
-
